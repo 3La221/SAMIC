@@ -1,10 +1,9 @@
 import React from 'react'
-import { GiCheckMark } from "react-icons/gi";
 import { GoGoal } from "react-icons/go";
 
 import Image from 'next/image'
 
-const ObjectifCard = () => {
+const ObjectifCard = ({label}:{label:string}) => {
   return (
     <div className='shadow-xl w-fit px-10 py-8 group rounded-lg cursor-pointer '>
 
@@ -15,7 +14,7 @@ const ObjectifCard = () => {
       </div>
 
       <p className='text-muted text-xs'>WE PROVIDE</p>
-      <h2 className='text-secondary text-2xl '>Quality Services</h2>
+      <h2 className='text-secondary text-2xl '>{label}</h2>
 
       
     </div>

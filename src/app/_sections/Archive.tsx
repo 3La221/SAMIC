@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import SectionTitle from '../_components/sectionTitle'
 import ArchiveCard from '../_components/archiveCard';
@@ -7,6 +9,7 @@ import { FaVideo } from "react-icons/fa";
 import { FaBook } from "react-icons/fa";
 import { IoNewspaper } from "react-icons/io5";
 import { GiNewspaper } from "react-icons/gi";
+import { Appearing } from '../_components/appearing';
 
 const Archive = () => {
 
@@ -42,7 +45,10 @@ const Archive = () => {
   return (
     <div className='flex flex-col items-center gap-6' >
       <SectionTitle title="Archive" icon={<RiArchiveDrawerFill className='text-primary' />} />
-      <div className='grid grid-cols-3 gap-6 m-8'>
+
+      <Appearing.FromBottom>
+
+      <div className='flex flex-wrap justify-center items-center gap-2'>
             {
                   archiveSections.map((section, index) => (
                         <ArchiveCard key={index} title={section.title} description={section.description} icon={section.icon} />
@@ -50,6 +56,9 @@ const Archive = () => {
             }
 
       </div>
+
+      </Appearing.FromBottom>
+
     </div>
   )
 }

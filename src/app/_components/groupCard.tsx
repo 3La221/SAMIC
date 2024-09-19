@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 interface EventCardProps {
@@ -9,12 +10,17 @@ interface EventCardProps {
 
 const GroupCard: React.FC<EventCardProps> = ({ name, image , icon }) => {
   return (
-      <div className="service-block-one w-[350px]  mb-24 shadow-xl cursor-pointer">
+      <div className="service-block-one w-[350px]   mb-6 shadow-xl cursor-pointer">
              
             <div className="inner-box h-full">
                   <div className="image-box ">
                   <figure className="image">
-                        <img src={image}  />
+                        <Image
+                        src={image}
+                        alt={name}
+                        width={350}
+                        height={200}
+                        />
                  </figure>
                   <div className="icon-box">{icon}</div>
                   </div>

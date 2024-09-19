@@ -1,4 +1,3 @@
-"use client"
 import Navbar from "./_components/navbar";
 import TopBar from "./_components/topbar";
 import Hero from "./_sections/Hero";
@@ -7,49 +6,36 @@ import Calendrier from "./_sections/Calendrier";
 import Actualite from "./_sections/Actualite";
 import Groupes from "./_sections/Groupes";
 import Archive from "./_sections/Archive";
-import { motion, useScroll } from "framer-motion"
+import Footer from "./_sections/Footer";
 
+import { PrismaClient } from '@prisma/client';
 
-export default function Home() {
-  const { scrollYProgress } = useScroll();
+const prisma = new PrismaClient();
+
+export default async function Home() {
+  // Fetch data from Prisma
+  const objectifs = await prisma.objectif.findMany();
+  const missions = await prisma.mission.findMany();
+  
+  
   return (
-   <div className="flex flex-col">
+    <div className="flex flex-col bg-background">
+      <TopBar />
+      <hr className="border-t border-dashed border-muted" />
+      <div className="sticky top-0 z-50 bg-background">
+        <Navbar />
+      </div>
 
-    <TopBar/>
+      <Hero />
 
-    <hr className="border-t border-dashed border-muted" />
+      {/* Pass the fetched data to LaSamic */}
+      <LaSamic initialObjectifs={objectifs} initialMissions={missions} />
 
-
-
-    <motion.div
-      className="sticky top-0 z-50 bg-background">
-      <Navbar />
-      <motion.div style={{ scaleX: scrollYProgress }} />  
-    </motion.div>
-
-
-
-    
-    <Hero/>
-<motion.div
-  initial={{ opacity: 0 , y : 50 }}
-  whileInView={{ opacity: 1 , y : 0 }}
-  transition={{ duration: 1}}
-  
-  
->
-<LaSamic  />
-
-</motion.div>
-
-    <Calendrier/>
-
-    <Actualite/>
-
-    <Groupes/>
-
-    <Archive/>
-
-   </div>
+      <Calendrier />
+      <Actualite />
+      <Groupes />
+      <Archive />
+      <Footer />
+    </div>
   );
 }

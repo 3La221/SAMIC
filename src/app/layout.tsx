@@ -5,6 +5,7 @@ import { Saira  } from 'next/font/google'
 
 
 const saira = Saira({
+  weight:['300'],
   subsets: ['latin']
 })
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${saira.className} antialiased `}
+        className={`${saira.className} `}
       >
         {children}
       </body>

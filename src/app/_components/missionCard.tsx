@@ -3,7 +3,7 @@ import { MdOutlineTaskAlt } from "react-icons/md";
 
 import Image from 'next/image'
 
-const MissionCard = () => {
+const MissionCard = ({label}:{label:string}) => {
   return (
       <div className='shadow-xl px-10 py-8 group rounded-lg cursor-pointer  '>
 
@@ -14,7 +14,7 @@ const MissionCard = () => {
       </div>
 
       <p className='text-muted text-xs'>WE PROVIDE</p>
-      <h2 className='text-secondary text-2xl '>Quality Services</h2>
+      <h2 className='text-secondary text-2xl '>{label}</h2>
 
       
     </div>

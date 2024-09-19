@@ -10,7 +10,7 @@ interface ArchiveCardProps {
 
 const ArchiveCard : React.FC<ArchiveCardProps> = ({title,description,icon}) => {
   return (
-    <div className='shadow-md flex flex-col p-6 items-center'>
+    <div className='shadow-xl flex flex-col p-6 mb-2 items-center'>
             {icon}
             <p className='font-bold text-secondary m-2' > {title} </p>
             <p className='text-[16px] text-center'> {description} </p>

@@ -1,0 +1,11 @@
+-- CreateTable
+CREATE TABLE "Objectif" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "label" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Mission" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "label" TEXT NOT NULL
+);
