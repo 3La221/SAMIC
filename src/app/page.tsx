@@ -26,6 +26,7 @@ export default async function Home() {
         <Navbar />
       </div>
 
+
       <Hero />
 
       {/* Pass the fetched data to LaSamic */}

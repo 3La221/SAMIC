@@ -26,3 +26,16 @@ model Mission {
 }
 
 
+model Actualite {
+  id Int @id @default(autoincrement())
+  label String 
+  img String
+  date String
+}
+
+model Organisation {
+  id Int @id @default(autoincrement())
+  label String 
+  img String
+
+}
