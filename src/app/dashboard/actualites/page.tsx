@@ -108,8 +108,12 @@ export default function ActualitesPage() {
       <ul>
         {actualites.map((actualite) => (
           <li key={actualite.id} className="mb-2">
-            <img src={`${actualite.img}`} alt={actualite.title} className="w-20 h-20 mr-2 inline" />
-            {editId === actualite.id ? (
+            <img
+              src={`/api/images/${actualite.img}`} 
+              alt={actualite.title} 
+              className="w-20 h-20 mr-2 inline" />
+            {editId === actualite.id
+             ? (
               <div className="inline">
                 <input
                   type="text"
