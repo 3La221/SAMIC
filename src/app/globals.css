@@ -629,3 +629,12 @@ h3 {
 .news-block-one .inner-box{
   margin-bottom: 30px;
 }
+
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+ 
+  }
+ 
+}

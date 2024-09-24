@@ -1,13 +1,66 @@
-"use client"
-import ImgPage from './imgPage';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
-const ImageGallery = () => {
+const images = [
+  { src: "/assets/images/project/project-13.jpg", alt: "Project 1" },
+  { src: "/assets/images/project/project-13.jpg", alt: "Project 2" },
+  { src: "/assets/images/project/project-13.jpg", alt: "Project 3" },
+  { src: "/assets/images/project/project-13.jpg", alt: "Project 4" },
+  { src: "/assets/images/project/project-13.jpg", alt: "Project 5" },
+]
+
+export default function ImgGallery() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }, [])
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000) // Auto-change every 5 seconds
+    return () => clearInterval(interval)
+  }, [nextSlide])
+
   return (
-      <ImgPage/>
+    <div className="relative w-full max-w-2xl mx-auto overflow-hidden">
+      <div 
+        className="flex transition-transform duration-500 ease-in-out" 
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+          <div key={index} className="w-full flex-shrink-0 relative group">
+            <img 
+              src={image.src} 
+              alt={image.alt} 
+              className="w-full h-48 sm:h-64 md:h-80 object-cover" 
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 text-white p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h6 className="text-sm">SAMiC</h6>
+              <h3 className="text-lg font-semibold">Clinical Trial Design Best Practices</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-1 rounded-full"
+        onClick={prevSlide}
+      >
+        <FaChevronLeft className="h-4 w-4 text-gray-800" />
+        <span className="sr-only">Previous slide</span>
+      </button>
+      <button
+        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 p-1 rounded-full"
+        onClick={nextSlide}
+      >
+        <FaChevronRight className="h-4 w-4 text-gray-800" />
+        <span className="sr-only">Next slide</span>
+      </button>
+    </div>
   )
-};
-
-export default ImageGallery;
+}

@@ -26,3 +26,32 @@ model Mission {
 }
 
 
+model Organisation {
+  id Int @id @default(autoincrement())
+  title String
+  desc String
+  img String
+}
+
+
+model Actualite {
+  id Int @id @default(autoincrement())
+  title String 
+  date String
+  img String
+}
+
+model Event {
+  id Int @id @default(autoincrement())
+  title String 
+  date String
+  desc String
+}
+
+model Formation {
+  id Int @id @default(autoincrement())
+  title String 
+  date String
+  desc String
+}
+
