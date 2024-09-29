@@ -91,11 +91,11 @@ CREATE TABLE "Formation" (
 -- CreateTable
 CREATE TABLE "Archive" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "title" TEXT NOT NULL,
-    "date" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
-    "desc" TEXT NOT NULL,
-    "type" TEXT NOT NULL
+    "title" TEXT,
+    "date" TEXT,
+    "url" TEXT,
+    "desc" TEXT,
+    "type" TEXT
 );
 
 -- CreateIndex

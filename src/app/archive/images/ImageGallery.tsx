@@ -21,7 +21,7 @@ export default async function  EnhancedImageGallery({images}: {images: Image[]})
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Image Gallery</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">Photos</h1>
       {images.length === 0 ? (
         <p className="text-gray-500 text-center">No images found.</p>
       ) : (

@@ -26,8 +26,6 @@ export default function ActualitesPage() {
     const data = await response.json();
     setActualites(data);
   };
-  console.log("Organisations", actualites);
-
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,35 +71,43 @@ export default function ActualitesPage() {
     fetchActualites();
   };
 
-
-  console.log(actualites)
-
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Actualités</h1>
       
       <form onSubmit={handleCreate} className="mb-4">
-        <input
-          type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          className="border p-2 mr-2"
-          placeholder="Title"
-        />
-        <input
-          type="date"
-          value={newDate}
-          onChange={(e) => setNewDate(e.target.value)}
-          className="border p-2 mr-2"
-          placeholder="Date"
-        />
-        <input
-          type="file"
-          onChange={(e) => setNewImage(e.target.files ? e.target.files[0] : null)}
-          className="border p-2 mr-2"
-        />
+        <label>
+          Titre:
+          <input
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            className="border p-2 mr-2"
+            placeholder="Titre"
+            required
+          />
+        </label>
+        <label>
+          Date:
+          <input
+            type="date"
+            value={newDate}
+            onChange={(e) => setNewDate(e.target.value)}
+            className="border p-2 mr-2"
+            required
+          />
+        </label>
+        <label>
+          Image:
+          <input
+            type="file"
+            onChange={(e) => setNewImage(e.target.files ? e.target.files[0] : null)}
+            className="border p-2 mr-2"
+            required
+          />
+        </label>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Actualité
+          Ajouter Actualité
         </button>
       </form>
 
@@ -136,7 +142,7 @@ export default function ActualitesPage() {
                   onClick={() => handleUpdate(actualite.id, actualite.title, actualite.date)}
                   className="bg-green-500 text-white px-2 py-1 rounded mr-2"
                 >
-                  Save
+                  Enregistrer
                 </button>
               </div>
             ) : (
@@ -146,13 +152,13 @@ export default function ActualitesPage() {
               onClick={() => setEditId(actualite.id)}
               className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
             >
-              Edit
+              Éditer
             </button>
             <button
               onClick={() => handleDelete(actualite.id)}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
-              Delete
+              Supprimer
             </button>
           </li>
         ))}

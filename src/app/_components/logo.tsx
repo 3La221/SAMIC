@@ -4,15 +4,15 @@ import Image from 'next/image'
 
 const Logo = () => {
   return (
-    <div>
+    <a href='/'>
       <Image 
-        src='https://www.samic.dz/images/logo_full.png' 
+        src='/logos/logo.png' 
         width={400} 
         height={400} 
         alt='logo' 
         priority
       />
-    </div>
+    </a>
   )
 }
 

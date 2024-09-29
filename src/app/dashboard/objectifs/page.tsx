@@ -61,7 +61,7 @@ export default function ObjectifsPage() {
           placeholder="New objectif label"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Objectif
+          Ajouter Objectif
         </button>
       </form>
 
@@ -82,13 +82,13 @@ export default function ObjectifsPage() {
               onClick={() => setEditId(objectif.id)}
               className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
             >
-              Edit
+              Modifier
             </button>
             <button
               onClick={() => handleDelete(objectif.id)}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
-              Delete
+              Supprimer
             </button>
           </li>
         ))}

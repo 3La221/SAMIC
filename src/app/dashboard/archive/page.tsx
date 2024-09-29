@@ -91,7 +91,7 @@ export default function ArchivesCRUD() {
           type="date"
           value={newArchive.date}
           onChange={handleInputChange}
-          required
+          
         />
         <Input
           name="url"
@@ -105,7 +105,7 @@ export default function ArchivesCRUD() {
           value={newArchive.desc}
           onChange={handleInputChange}
           placeholder="Description"
-          required
+          
         />
         <Select name="type" value={newArchive.type} onValueChange={handleTypeChange}>
           <SelectTrigger>

@@ -28,7 +28,6 @@ export default function OrganisationPage() {
   };
 
   const handleCreate = async (e: React.FormEvent) => {
-    console.log("Data", newTitle, newDesc, newImage);
     e.preventDefault();
     const formData = new FormData();
     formData.append('title', newTitle);
@@ -46,7 +45,6 @@ export default function OrganisationPage() {
     setNewDesc('');
     setNewImage(null);
     fetchorganisations();
-    
   };
 
   const handleUpdate = async (id: number, updatedTitle: string, updateDesc: string) => {
@@ -57,12 +55,12 @@ export default function OrganisationPage() {
     if (editImage) {
       formData.append('img', editImage);
     }
-    
+
     await fetch('/api/organisations', {
       method: 'PUT',
       body: formData
     });
-    
+
     setEditId(null);
     setEditImage(null);
     fetchorganisations();
@@ -73,34 +71,41 @@ export default function OrganisationPage() {
     fetchorganisations();
   };
 
-
-
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Organisation</h1>
-      
+      <h1 className="text-2xl font-bold mb-4">Organisations</h1>
+
       <form onSubmit={handleCreate} className="mb-4">
-        <input
-          type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          className="border p-2 mr-2"
-          placeholder="Title"
-        />
-        <input
-          type="text"
-          value={newDesc}
-          onChange={(e) => setNewDesc(e.target.value)}
-          className="border p-2 mr-2"
-          placeholder="Description"
-        />
-        <input
-          type="file"
-          onChange={(e) => setNewImage(e.target.files ? e.target.files[0] : null)}
-          className="border p-2 mr-2"
-        />
+        <label>
+          Titre:
+          <input
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            className="border p-2 mr-2"
+            placeholder="Titre"
+          />
+        </label>
+        <label>
+          Description:
+          <input
+            type="text"
+            value={newDesc}
+            onChange={(e) => setNewDesc(e.target.value)}
+            className="border p-2 mr-2"
+            placeholder="Description"
+          />
+        </label>
+        <label>
+          Image:
+          <input
+            type="file"
+            onChange={(e) => setNewImage(e.target.files ? e.target.files[0] : null)}
+            className="border p-2 mr-2"
+          />
+        </label>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Organisation Image
+          Ajouter une organisation
         </button>
       </form>
 
@@ -110,28 +115,37 @@ export default function OrganisationPage() {
             <img src={`/api/images/${organisation.img}`} alt={organisation.title} className="w-20 h-20 mr-2 inline" />
             {editId === organisation.id ? (
               <div className="inline">
-                <input
-                  type="text"
-                  defaultValue={organisation.title}
-                  onBlur={(e) => handleUpdate(organisation.id, e.target.value, organisation.desc)}
-                  className="border p-1 mr-2"
-                />
-                <input
-                  type="text"
-                  defaultValue={organisation.desc}
-                  onBlur={(e) => handleUpdate(organisation.id, organisation.title, e.target.value)}
-                  className="border p-1 mr-2"
-                />
-                <input
-                  type="file"
-                  onChange={(e) => setEditImage(e.target.files ? e.target.files[0] : null)}
-                  className="border p-1 mr-2"
-                />
+                <label>
+                  Titre:
+                  <input
+                    type="text"
+                    defaultValue={organisation.title}
+                    onBlur={(e) => handleUpdate(organisation.id, e.target.value, organisation.desc)}
+                    className="border p-1 mr-2"
+                  />
+                </label>
+                <label>
+                  Description:
+                  <input
+                    type="text"
+                    defaultValue={organisation.desc}
+                    onBlur={(e) => handleUpdate(organisation.id, organisation.title, e.target.value)}
+                    className="border p-1 mr-2"
+                  />
+                </label>
+                <label>
+                  Nouvelle image:
+                  <input
+                    type="file"
+                    onChange={(e) => setEditImage(e.target.files ? e.target.files[0] : null)}
+                    className="border p-1 mr-2"
+                  />
+                </label>
                 <button
                   onClick={() => handleUpdate(organisation.id, organisation.title, organisation.desc)}
                   className="bg-green-500 text-white px-2 py-1 rounded mr-2"
                 >
-                  Save
+                  Enregistrer
                 </button>
               </div>
             ) : (
@@ -141,13 +155,13 @@ export default function OrganisationPage() {
               onClick={() => setEditId(organisation.id)}
               className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
             >
-              Edit
+              Modifier
             </button>
             <button
               onClick={() => handleDelete(organisation.id)}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
-              Delete
+              Supprimer
             </button>
           </li>
         ))}

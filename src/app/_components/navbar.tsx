@@ -15,9 +15,7 @@ import {
 const Socials = () => {
   const socialmedias = [
     { icon: <FaFacebook />, href: 'https://web.facebook.com/profile.php?id=100057176661295&locale=fr_FR' },
-    { icon: <FaLinkedin />, href: '#' },
-    { icon: <FaTwitter />, href: '#' },
-    { icon: <FaInstagram />, href: '#' },
+    
   ]
 
   return (

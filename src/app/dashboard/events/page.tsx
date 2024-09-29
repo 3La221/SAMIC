@@ -60,30 +60,35 @@ export default function EventPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Events</h1>
+      <h1 className="text-2xl font-bold mb-4">Événements</h1>
       
       <form onSubmit={handleCreate} className="mb-4">
+        <label className="block mb-1">Titre:</label>
         <input
           type="text"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
           className="border p-2 mr-2"
-          placeholder="Title"
+          placeholder="Titre"
         />
+        
+        <label className="block mb-1">Date de début:</label>
         <input
           type="date"
           value={newStartDate}
           onChange={(e) => setNewStartDate(e.target.value)}
           className="border p-2 mr-2"
-          placeholder="Start Date"
         />
+        
+        <label className="block mb-1">Date de fin:</label>
         <input
           type="date"
           value={newEndDate}
           onChange={(e) => setNewEndDate(e.target.value)}
           className="border p-2 mr-2"
-          placeholder="End Date"
         />
+        
+        <label className="block mb-1">Description:</label>
         <input
           type="text"
           value={newDesc}
@@ -91,8 +96,9 @@ export default function EventPage() {
           className="border p-2 mr-2"
           placeholder="Description"
         />
+        
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Event
+          Ajouter Événement
         </button>
       </form>
 
@@ -127,19 +133,19 @@ export default function EventPage() {
                 />
               </div>
             ) : (
-              <span>{event.title} - {event.startDate} to {event.endDate} - {event.desc}</span>
+              <span>{event.title} - {event.startDate} à {event.endDate} - {event.desc}</span>
             )}
             <button
               onClick={() => setEditId(event.id)}
               className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
             >
-              Edit
+              Modifier
             </button>
             <button
               onClick={() => handleDelete(event.id)}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
-              Delete
+              Supprimer
             </button>
           </li>
         ))}

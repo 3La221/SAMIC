@@ -63,7 +63,7 @@ export default function MissionPage() {
           placeholder="New mission label"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Mission
+          Ajouter Mission
         </button>
       </form>
 
@@ -84,13 +84,13 @@ export default function MissionPage() {
               onClick={() => setEditId(mission.id)}
               className="bg-yellow-500 text-white px-2 py-1 rounded mr-2"
             >
-              Edit
+              Modifer
             </button>
             <button
               onClick={() => handleDelete(mission.id)}
               className="bg-red-500 text-white px-2 py-1 rounded"
             >
-              Delete
+              Supprimer
             </button>
           </li>
         ))}

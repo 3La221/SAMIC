@@ -1,3 +1,4 @@
+"use client"
 import TopBar from "../_components/topbar";
 
 
