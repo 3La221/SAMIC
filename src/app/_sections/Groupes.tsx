@@ -44,7 +44,7 @@ const Groupes = () => {
       <div className='grid  md:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center  gap-4  '>
             {
                   groups.map((group, index) => (
-                              <GroupCard key={index} name={group.name} image={group.image}  icon={group.icon}  />
+                              <GroupCard key={index} name={group.name} image  ={group.image}    />
                   ))
             }
 

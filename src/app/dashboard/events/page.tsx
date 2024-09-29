@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 interface Event {
   id: number;
   title: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   desc: string;
 }
 
@@ -13,7 +14,8 @@ export default function EventPage() {
 
   const [events, setEvents] = useState<Event[]>([]);
   const [newTitle, setNewTitle] = useState('');
-  const [newDate, setNewDate] = useState('');
+  const [newStartDate, setNewStartDate] = useState('');
+  const [newEndDate, setNewEndDate] = useState('');
   const [newDesc, setNewDesc] = useState('');
   const [editId, setEditId] = useState<number | null>(null);
 
@@ -32,19 +34,20 @@ export default function EventPage() {
     await fetch('/api/events', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: newTitle, date: newDate, desc: newDesc })
+      body: JSON.stringify({ title: newTitle, startDate: newStartDate, endDate: newEndDate, desc: newDesc })
     });
     setNewTitle('');
-    setNewDate('');
+    setNewStartDate('');
+    setNewEndDate('');
     setNewDesc('');
     fetchEvents();
   };
 
-  const handleUpdate = async (id: number, updatedTitle: string, updatedDate: string, updatedDesc: string) => {
+  const handleUpdate = async (id: number, updatedTitle: string, updatedStartDate: string, updatedEndDate: string, updatedDesc: string) => {
     await fetch('/api/events', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, title: updatedTitle, date: updatedDate, desc: updatedDesc })
+      body: JSON.stringify({ id, title: updatedTitle, startDate: updatedStartDate, endDate: updatedEndDate, desc: updatedDesc })
     });
     setEditId(null);
     fetchEvents();
@@ -69,10 +72,17 @@ export default function EventPage() {
         />
         <input
           type="date"
-          value={newDate}
-          onChange={(e) => setNewDate(e.target.value)}
+          value={newStartDate}
+          onChange={(e) => setNewStartDate(e.target.value)}
           className="border p-2 mr-2"
-          placeholder="Date"
+          placeholder="Start Date"
+        />
+        <input
+          type="date"
+          value={newEndDate}
+          onChange={(e) => setNewEndDate(e.target.value)}
+          className="border p-2 mr-2"
+          placeholder="End Date"
         />
         <input
           type="text"
@@ -94,24 +104,30 @@ export default function EventPage() {
                 <input
                   type="text"
                   defaultValue={event.title}
-                  onBlur={(e) => handleUpdate(event.id, e.target.value, event.date, event.desc)}
+                  onBlur={(e) => handleUpdate(event.id, e.target.value, event.startDate, event.endDate, event.desc)}
                   className="border p-1 mr-2"
                 />
                 <input
                   type="date"
-                  defaultValue={event.date}
-                  onBlur={(e) => handleUpdate(event.id, event.title, e.target.value, event.desc)}
+                  defaultValue={event.startDate}
+                  onBlur={(e) => handleUpdate(event.id, event.title, e.target.value, event.endDate, event.desc)}
+                  className="border p-1 mr-2"
+                />
+                <input
+                  type="date"
+                  defaultValue={event.endDate}
+                  onBlur={(e) => handleUpdate(event.id, event.title, event.startDate, e.target.value, event.desc)}
                   className="border p-1 mr-2"
                 />
                 <input
                   type="text"
                   defaultValue={event.desc}
-                  onBlur={(e) => handleUpdate(event.id, event.title, event.date, e.target.value)}
+                  onBlur={(e) => handleUpdate(event.id, event.title, event.startDate, event.endDate, e.target.value)}
                   className="border p-1 mr-2"
                 />
               </div>
             ) : (
-              <span>{event.title} - {event.date} - {event.desc}</span>
+              <span>{event.title} - {event.startDate} to {event.endDate} - {event.desc}</span>
             )}
             <button
               onClick={() => setEditId(event.id)}

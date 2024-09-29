@@ -9,7 +9,7 @@ const SectionTitle = ({title, icon}:{title:string, icon:ReactNode} , ) => {
   return (
 
     <Appearing.FromBottom>
-      <div className='flex'>
+      <div className='flex mt-6'>
       <LuDna className='text-primary rotate-90'/>
       
         <h1 className='text-secondary border-b-2 pb-2' >

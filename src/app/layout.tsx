@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Saira  } from 'next/font/google'
+import Head from "next/head"; 
 
 
 const saira = Saira({
@@ -20,6 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.png" /> 
+        <meta name="description" content="SAMIC" />
+      </Head>
       <body
         className={`${saira.className}`}
       >

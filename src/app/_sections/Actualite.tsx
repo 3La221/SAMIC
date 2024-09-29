@@ -5,26 +5,29 @@ import { FaRegNewspaper } from "react-icons/fa";
 import ActualiteCard from '../_components/actualiteCard';
 import { Appearing } from '../_components/appearing';
 
-const Actualite = () => {
-  const news = [
-    {
-      label:"News 1",
-    },
-    {
-      label:"News 2",
-    }
+interface ActualiteProps {
+  actualites: {
+    title: string,
+    date: string,
+    img : string,
+  }[]
+}
+
+
+const Actualite = ({actualites}:ActualiteProps) => {
+  
    
-  ]
+  
 
   return (
-    <div className='flex flex-col items-center gap-4'>
+    <div className='flex flex-col items-center mt-6 gap-4'>
       <SectionTitle title="Actualités" icon= {<FaRegNewspaper className='text-primary rotate-45 mt-2' />} />
       <div className='flex gap-4 flex-wrap justify-center items-center'>
         <Appearing.Sequential>
 
-        {news.map((news, index) => (
+        {actualites.map((actualite, index) => (
           <Appearing.FromBottom>
-                        <ActualiteCard key={index} />
+                        <ActualiteCard actualite={actualite} key={index} />
           </Appearing.FromBottom>
         ))}
 

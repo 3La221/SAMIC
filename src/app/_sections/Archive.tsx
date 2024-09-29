@@ -17,27 +17,33 @@ const Archive = () => {
             {
                   title: 'Éditions',
                   description: 'Explorez nos différentes éditions et publications au fil des ans.',
-                  icon :<FaBook className='text-secondary text-3xl m-auto mt-5' />
+                  icon :<FaBook className='text-secondary text-3xl m-auto mt-5' />,
+                  to: '/editions'
             } ,
             {
                   title: 'Publications',
                   description: 'Parcourez les articles, les newsletters et les rapports spéciaux.',
-                  icon :<IoNewspaper className='text-secondary text-3xl m-auto mt-5' />
+                  icon :<IoNewspaper className='text-secondary text-3xl m-auto mt-5' />,
+                  to: '/publications'
             },
             {
                   title: 'Com-posters',
                   description: 'Accédez à une collection d\'affiches créatives et informatives.',
-                  icon :<GiNewspaper className='text-secondary text-3xl m-auto mt-5' />
+                  icon :<GiNewspaper className='text-secondary text-3xl m-auto mt-5' />,
+                  to: '/composters'
+
             },
             {
                   title: 'Vidéos',
                   description: 'Regardez notre contenu vidéo archivé et nos interviews.',
-                  icon :<FaVideo className='text-secondary text-3xl m-auto mt-5' />
+                  icon :<FaVideo className='text-secondary text-3xl m-auto mt-5' />,
+                  to: '/videos'
             },
             {
                   title: 'Photos',
                   description: 'Regardez notre contenu vidéo archivé et nos interviews.',
-                  icon :<MdInsertPhoto className='text-secondary text-3xl m-auto mt-5' />
+                  icon :<MdInsertPhoto className='text-secondary text-3xl m-auto mt-5' />,
+                  to: '/images'
             }
 
       ]
@@ -51,7 +57,7 @@ const Archive = () => {
       <div className='flex flex-wrap justify-center items-center gap-2'>
             {
                   archiveSections.map((section, index) => (
-                        <ArchiveCard key={index} title={section.title} description={section.description} icon={section.icon} />
+                        <ArchiveCard key={index} title={section.title} description={section.description} icon={section.icon} to={section.to} />
                   ))
             }
 

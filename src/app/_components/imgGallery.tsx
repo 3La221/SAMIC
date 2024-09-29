@@ -1,25 +1,24 @@
 'use client'
 
+import { Organisation } from '@prisma/client'
 import React, { useState, useEffect, useCallback } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
-const images = [
-  { src: "/assets/images/project/project-13.jpg", alt: "Project 1" },
-  { src: "/assets/images/project/project-13.jpg", alt: "Project 2" },
-  { src: "/assets/images/project/project-13.jpg", alt: "Project 3" },
-  { src: "/assets/images/project/project-13.jpg", alt: "Project 4" },
-  { src: "/assets/images/project/project-13.jpg", alt: "Project 5" },
-]
 
-export default function ImgGallery() {
+interface ImageGalleryProps {
+  initalOrganisations  : Organisation[];
+
+}
+
+export default function ImgGallery({ initalOrganisations }: ImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % initalOrganisations.length)
   }, [])
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + initalOrganisations.length) % initalOrganisations.length)
   }, [])
 
   useEffect(() => {
@@ -33,16 +32,16 @@ export default function ImgGallery() {
         className="flex transition-transform duration-500 ease-in-out" 
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {images.map((image, index) => (
+        {initalOrganisations.map((organisation, index) => (
           <div key={index} className="w-full flex-shrink-0 relative group">
             <img 
-              src={image.src} 
-              alt={image.alt} 
+              src={`/api/images/${organisation.img}`} 
+              alt={organisation.title} 
               className="w-full h-48 sm:h-64 md:h-80 object-cover" 
             />
             <div className="absolute inset-0 bg-black bg-opacity-50 text-white p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <h6 className="text-sm">SAMiC</h6>
-              <h3 className="text-lg font-semibold">Clinical Trial Design Best Practices</h3>
+              <h6 className="text-sm">{organisation.title}</h6>
+              <h3 className="text-lg font-semibold">{organisation.desc}</h3>
             </div>
           </div>
         ))}

@@ -53,7 +53,7 @@ export default function OrganisationPage() {
     const formData = new FormData();
     formData.append('id', String(id));
     formData.append('title', updatedTitle);
-    formData.append('date', updateDesc);
+    formData.append('desc', updateDesc);
     if (editImage) {
       formData.append('img', editImage);
     }
@@ -88,7 +88,7 @@ export default function OrganisationPage() {
           placeholder="Title"
         />
         <input
-          type="date"
+          type="text"
           value={newDesc}
           onChange={(e) => setNewDesc(e.target.value)}
           className="border p-2 mr-2"
@@ -100,14 +100,14 @@ export default function OrganisationPage() {
           className="border p-2 mr-2"
         />
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Actualité
+          Add Organisation Image
         </button>
       </form>
 
       <ul>
         {organisations.map((organisation) => (
           <li key={organisation.id} className="mb-2">
-            <img src={`${organisation.img}`} alt={organisation.title} className="w-20 h-20 mr-2 inline" />
+            <img src={`/api/images/${organisation.img}`} alt={organisation.title} className="w-20 h-20 mr-2 inline" />
             {editId === organisation.id ? (
               <div className="inline">
                 <input

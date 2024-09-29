@@ -16,6 +16,11 @@ export default async function Home() {
   // Fetch data from Prisma
   const objectifs = await prisma.objectif.findMany();
   const missions = await prisma.mission.findMany();
+  const organisations = await prisma.organisation.findMany();
+  const events = await prisma.event.findMany();
+  const formations = await prisma.formation.findMany();
+  const actualites = await prisma.actualite.findMany();
+  
   
   
   return (
@@ -28,11 +33,13 @@ export default async function Home() {
 
       <Hero />
 
-      {/* Pass the fetched data to LaSamic */}
-      <LaSamic initialObjectifs={objectifs} initialMissions={missions} />
+      
+      <LaSamic initialObjectifs={objectifs} initialMissions={missions} initalOrganisations={organisations} />
+      
+      <Calendrier events={events} formations={formations} />
 
-      <Calendrier />
-      <Actualite />
+
+      <Actualite actualites={actualites} />
       <Groupes />
       <Archive />
       <Footer />

@@ -5,14 +5,16 @@ import { useState, useEffect } from 'react';
 interface Formation {
   id: number;
   title: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   desc: string;
 }
 
 export default function FormationPage() {
   const [formations, setFormations] = useState<Formation[]>([]);
   const [newTitle, setNewTitle] = useState('');
-  const [newDate, setNewDate] = useState('');
+  const [newStartDate, setNewStartDate] = useState('');
+  const [newEndDate, setNewEndDate] = useState('');
   const [newDesc, setNewDesc] = useState('');
   const [editId, setEditId] = useState<number | null>(null);
 
@@ -31,19 +33,20 @@ export default function FormationPage() {
     await fetch('/api/formations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: newTitle, date: newDate, desc: newDesc })
+      body: JSON.stringify({ title: newTitle, startDate: newStartDate, endDate: newEndDate, desc: newDesc })
     });
     setNewTitle('');
-    setNewDate('');
+    setNewStartDate('');
+    setNewEndDate('');
     setNewDesc('');
     fetchFormations();
   };
 
-  const handleUpdate = async (id: number, updatedTitle: string, updatedDate: string, updatedDesc: string) => {
+  const handleUpdate = async (id: number, updatedTitle: string, updatedStartDate: string, updatedEndDate: string, updatedDesc: string) => {
     await fetch('/api/formations', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, title: updatedTitle, date: updatedDate, desc: updatedDesc })
+      body: JSON.stringify({ id, title: updatedTitle, startDate: updatedStartDate, endDate: updatedEndDate, desc: updatedDesc })
     });
     setEditId(null);
     fetchFormations();
@@ -68,10 +71,17 @@ export default function FormationPage() {
         />
         <input
           type="date"
-          value={newDate}
-          onChange={(e) => setNewDate(e.target.value)}
+          value={newStartDate}
+          onChange={(e) => setNewStartDate(e.target.value)}
           className="border p-2 mr-2"
-          placeholder="Date"
+          placeholder="Start Date"
+        />
+        <input
+          type="date"
+          value={newEndDate}
+          onChange={(e) => setNewEndDate(e.target.value)}
+          className="border p-2 mr-2"
+          placeholder="End Date"
         />
         <input
           type="text"
@@ -93,24 +103,30 @@ export default function FormationPage() {
                 <input
                   type="text"
                   defaultValue={formation.title}
-                  onBlur={(e) => handleUpdate(formation.id, e.target.value, formation.date, formation.desc)}
+                  onBlur={(e) => handleUpdate(formation.id, e.target.value, formation.startDate, formation.endDate, formation.desc)}
                   className="border p-1 mr-2"
                 />
                 <input
                   type="date"
-                  defaultValue={formation.date}
-                  onBlur={(e) => handleUpdate(formation.id, formation.title, e.target.value, formation.desc)}
+                  defaultValue={formation.startDate}
+                  onBlur={(e) => handleUpdate(formation.id, formation.title, e.target.value, formation.endDate, formation.desc)}
+                  className="border p-1 mr-2"
+                />
+                <input
+                  type="date"
+                  defaultValue={formation.endDate}
+                  onBlur={(e) => handleUpdate(formation.id, formation.title, formation.startDate, e.target.value, formation.desc)}
                   className="border p-1 mr-2"
                 />
                 <input
                   type="text"
                   defaultValue={formation.desc}
-                  onBlur={(e) => handleUpdate(formation.id, formation.title, formation.date, e.target.value)}
+                  onBlur={(e) => handleUpdate(formation.id, formation.title, formation.startDate, formation.endDate, e.target.value)}
                   className="border p-1 mr-2"
                 />
               </div>
             ) : (
-              <span>{formation.title} - {formation.date} - {formation.desc}</span>
+              <span>{formation.title} - {formation.startDate} to {formation.endDate} - {formation.desc}</span>
             )}
             <button
               onClick={() => setEditId(formation.id)}

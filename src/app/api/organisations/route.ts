@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   const uploadDir = path.join(process.cwd(), 'public', 'uploads');
   await writeFile(path.join(uploadDir, filename), buffer);
   const organisation = await prisma.organisation.create({
-    data: { title, desc, img: `/uploads/${filename}` },
+    data: { title, desc, img: filename },
   });
   return NextResponse.json(organisation);
 

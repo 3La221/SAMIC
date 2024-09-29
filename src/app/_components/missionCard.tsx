@@ -13,7 +13,7 @@ const MissionCard = ({label}:{label:string}) => {
         
       </div>
 
-      <p className='text-muted text-xs'>WE PROVIDE</p>
+      <p className='text-muted text-xs'></p>
       <h2 className='text-secondary text-2xl '>{label}</h2>
 
       

@@ -10,7 +10,8 @@ export async function POST(request: Request) {
   const body = await request.json();
   const event = await prisma.event.create({
     data: { title: body.title,
-            date : body.date,
+            startDate : body.startDate,
+            endDate : body.endDate,
             desc : body.desc,
      },
   });
@@ -22,7 +23,8 @@ export async function PUT(request: Request) {
   const event = await prisma.event.update({
     where: { id: body.id },
     data: { title: body.title,
-      date : body.date,
+      startDate : body.startDate,
+      endDate : body.endDate,
       desc : body.desc,
 },
   });

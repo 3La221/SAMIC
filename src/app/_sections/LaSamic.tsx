@@ -7,6 +7,7 @@ import SubSectionTitle from '../_components/subSectionTitle';
 import ImageGallery from '../_components/imgGallery';
 import { LuDna } from "react-icons/lu";
 import { Appearing } from '../_components/appearing';
+import { Organisation } from '@prisma/client';
 
 interface Objectif {
   id: number;
@@ -21,9 +22,10 @@ interface Mission {
 interface LaSamicProps {
   initialObjectifs: Objectif[];
   initialMissions: Mission[];
+  initalOrganisations : Organisation[];
 }
 
-const LaSamic = ({ initialObjectifs, initialMissions }: LaSamicProps) => {
+const LaSamic = ({ initialObjectifs, initialMissions , initalOrganisations }: LaSamicProps) => {
   return (
     <div className='flex flex-col justify-center items-center gap-4 mt-8 mb-8'>
       <SectionTitle title={"La SAMiC"} icon={<LuDna className='text-primary rotate-90' />} />
@@ -66,7 +68,7 @@ const LaSamic = ({ initialObjectifs, initialMissions }: LaSamicProps) => {
       {/* Organisation Section */}
       <SubSectionTitle title={'Organisation'} />
       <Appearing.FromBottom>
-        <ImageGallery />
+        <ImageGallery initalOrganisations={initalOrganisations} />
       </Appearing.FromBottom>
     </div>
   );

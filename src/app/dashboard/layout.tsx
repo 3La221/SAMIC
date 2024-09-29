@@ -1,11 +1,20 @@
+"use client"
 import Link from 'next/link';
-import { Home, Target, Briefcase, Newspaper, BookOpen, Building2, Calendar } from 'lucide-react';
+import { Home, Target, Briefcase, Newspaper, BookOpen, Building2, Calendar , Archive } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { SessionProvider } from 'next-auth/react';
+import type { AppProps } from 'next/app';
+
 
 export default function DashboardLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
+  
+
   return (
     <div className="flex h-screen bg-gray-100">
       <aside className="w-64 bg-white shadow-md">
@@ -14,7 +23,7 @@ export default function DashboardLayout({
         </div>
         <nav className="mt-6">
           <NavLink href="/dashboard" icon={<Home className="w-5 h-5" />}>
-            Vue d'ensemble
+            Vue d&apos;ensemble
           </NavLink>
           <NavLink href="/dashboard/objectifs" icon={<Target className="w-5 h-5" />}>
             Objectifs
@@ -34,6 +43,10 @@ export default function DashboardLayout({
           <NavLink href="/dashboard/events" icon={<Calendar className="w-5 h-5" />}>
             Événements
           </NavLink>
+          <NavLink href='/dashboard/archive' icon={<Archive className="w-5 h-5" />}>
+            Archives
+          </NavLink>
+          
         </nav>
       </aside>
       <main className="flex-1 overflow-y-auto">
@@ -51,7 +64,8 @@ function NavLink({ href, children, icon }: { href: string; children: React.React
   return (
     <Link 
       href={href} 
-      className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 transition-colors duration-200"
+      className="
+       flex items-center px-6 py-3 text-gray-700 hover:bg-gray-20 transition-colors duration-200"
     >
       <span className="mr-3 text-gray-600">{icon}</span>
       {children}
