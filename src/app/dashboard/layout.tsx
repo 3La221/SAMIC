@@ -1,27 +1,26 @@
 "use client"
 import Link from 'next/link';
-import { Home, Target, Briefcase, Newspaper, BookOpen, Building2, Calendar , Archive } from 'lucide-react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { SessionProvider } from 'next-auth/react';
-import type { AppProps } from 'next/app';
-
+import { signOut } from 'next-auth/react';
+import { Home, Target, Briefcase, Newspaper,
+   BookOpen, Building2, Calendar, Archive, LogOut , Plus} from 'lucide-react';
 
 export default function DashboardLayout({
   children
 }: {
   children: React.ReactNode
 }) {
-  
+
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: '/' });
+  };
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <aside className="w-64 bg-white shadow-md">
+      <aside className="w-64 bg-white shadow-md flex flex-col">
         <div className="p-4">
           <h2 className="text-2xl font-bold text-gray-800">Dashboard</h2>
         </div>
-        <nav className="mt-6">
+        <nav className="mt-6 flex-grow">
           <NavLink href="/dashboard" icon={<Home className="w-5 h-5" />}>
             Vue d&apos;ensemble
           </NavLink>
@@ -46,8 +45,23 @@ export default function DashboardLayout({
           <NavLink href='/dashboard/archive' icon={<Archive className="w-5 h-5" />}>
             Archives
           </NavLink>
-          
         </nav>
+        <a
+            href='/auth/register'
+            className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 transition-colors duration-200 mt-auto mb-4"
+          >
+            <Plus className="w-5 h-5 mr-3 text-gray-600" />
+            Ajouter un Admin
+          </a>
+      
+          <button
+            onClick={handleLogout}
+            className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 transition-colors duration-200 mt-auto mb-4"
+          >
+            <LogOut className="w-5 h-5 mr-3 text-gray-600" />
+            Déconnexion
+          </button>
+      
       </aside>
       <main className="flex-1 overflow-y-auto">
         <div className="container mx-auto px-6 py-8">
@@ -62,10 +76,10 @@ export default function DashboardLayout({
 
 function NavLink({ href, children, icon }: { href: string; children: React.ReactNode; icon: React.ReactNode }) {
   return (
-    <Link 
-      href={href} 
+    <Link
+      href={href}
       className="
-       flex items-center px-6 py-3 text-gray-700 hover:bg-gray-20 transition-colors duration-200"
+       flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 transition-colors duration-200"
     >
       <span className="mr-3 text-gray-600">{icon}</span>
       {children}
