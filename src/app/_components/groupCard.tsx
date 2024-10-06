@@ -2,9 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Card, CardContent } from "@/components/ui/card"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { FaBacterium, FaBug } from 'react-icons/fa'
-import { MdOutlineScience } from 'react-icons/md'
-import { TiZoom } from 'react-icons/ti'
+
 
 interface GroupCardProps {
   name: string

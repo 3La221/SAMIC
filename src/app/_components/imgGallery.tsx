@@ -1,9 +1,14 @@
 'use client'
 
-import { Organisation } from '@prisma/client'
 import React, { useState, useEffect, useCallback } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
+interface Organisation {
+  id: number;
+  title: string;
+  desc: string;
+  img: string;
+}
 
 interface ImageGalleryProps {
   initalOrganisations  : Organisation[];
