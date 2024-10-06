@@ -7,7 +7,14 @@ import SubSectionTitle from '../_components/subSectionTitle';
 import ImageGallery from '../_components/imgGallery';
 import { LuDna } from "react-icons/lu";
 import { Appearing } from '../_components/appearing';
-import { Organisation } from '@prisma/client';
+
+interface Organisation {
+  id: number;
+  title: string;
+  desc: string;
+  img: string;
+}
+
 
 interface Objectif {
   id: number;
