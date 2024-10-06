@@ -14,7 +14,7 @@ interface ActualiteProps {
 }
 
 
-const Actualite = ({actualites}:ActualiteProps) => {
+const Actualites = ({actualites}:ActualiteProps) => {
   
    
   
@@ -40,4 +40,4 @@ const Actualite = ({actualites}:ActualiteProps) => {
   )
 }
 
-export default Actualite
+export default Actualites

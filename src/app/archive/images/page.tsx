@@ -15,7 +15,6 @@ export default async function Images() {
       
 
       <ImageGallery images={images} />
-      
     </div>
   )
 }

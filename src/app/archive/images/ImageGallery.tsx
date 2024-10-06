@@ -6,17 +6,21 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { X } from "lucide-react"
 
 
-interface Image {
+interface Archive {
   id: number
-  url: string
-  title?: string
-  desc ?: string
+  title: string | null
+  date: string | null
+  url: string | null
+  desc: string | null
+  type: string | null
 }
 
+interface ImageProps {
+  images: Archive[]
+}
 
-
-export default async function  EnhancedImageGallery({images}: {images: Image[]}) {
-  const [selectedImage, setSelectedImage] = useState<Image | null>(null)
+const ImageGallery: React.FC<ImageProps> = ({ images }) => {
+  const [selectedImage, setSelectedImage] = useState<Archive | null>(null)
 
 
   return (
@@ -38,7 +42,7 @@ export default async function  EnhancedImageGallery({images}: {images: Image[]})
               >
                 <div className="relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
                   <Image
-                    src={image.url}
+                    src={image.url || ''}
                     alt={image.title || 'Gallery image'}
                     width={400}
                     height={400}
@@ -61,7 +65,7 @@ export default async function  EnhancedImageGallery({images}: {images: Image[]})
           {selectedImage && (
             <div className="relative w-full h-full">
               <Image
-                src={selectedImage.url}
+                src={selectedImage.url || ''}
                 alt={selectedImage.title || 'Selected image'}
                 layout="responsive"
                 width={800}
@@ -82,3 +86,5 @@ export default async function  EnhancedImageGallery({images}: {images: Image[]})
     </div>
   )
 }
+
+export default ImageGallery

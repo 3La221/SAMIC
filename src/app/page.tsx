@@ -3,13 +3,13 @@ import TopBar from "./_components/topbar";
 import Hero from "./_sections/Hero";
 import LaSamic from "./_sections/LaSamic";
 import Calendrier from "./_sections/Calendrier";
-import Actualite from "./_sections/Actualite";
+import Actualites from "./_sections/Actualites";
 import Groupes from "./_sections/Groupes";
 import Archive from "./_sections/Archive";
 import Footer from "./_sections/Footer";
 
 import { PrismaClient } from '@prisma/client';
-
+export const revalidate = 0;
 const prisma = new PrismaClient();
 
 export default async function Home() {
@@ -39,7 +39,7 @@ export default async function Home() {
       <Calendrier events={events} formations={formations} />
 
 
-      <Actualite actualites={actualites} />
+      <Actualites actualites={actualites} />
       <Groupes />
       <Archive />
       <Footer />

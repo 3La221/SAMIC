@@ -26,6 +26,7 @@ interface LaSamicProps {
 }
 
 const LaSamic = ({ initialObjectifs, initialMissions , initalOrganisations }: LaSamicProps) => {
+  console.log(initalOrganisations , initialMissions , initialObjectifs)
   return (
     <div className='flex flex-col justify-center items-center gap-4 mt-8 mb-8'>
       <SectionTitle title={"La SAMiC"} icon={<LuDna className='text-primary rotate-90' />} />
