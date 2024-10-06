@@ -1,6 +1,6 @@
 FROM node:20.11.1-alpine
 
-WORKDIR /samic
+WORKDIR /frontend
 
 COPY package.json .
 
