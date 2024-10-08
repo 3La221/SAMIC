@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { Home, Target, Briefcase, Newspaper,
-   BookOpen, Building2, Calendar, Archive, LogOut , Plus} from 'lucide-react';
+   BookOpen, Building2, Calendar, Archive, LogOut , Star , Plus} from 'lucide-react';
 
 export default function DashboardLayout({
   children
@@ -44,6 +44,9 @@ export default function DashboardLayout({
           </NavLink>
           <NavLink href='/dashboard/archive' icon={<Archive className="w-5 h-5" />}>
             Archives
+          </NavLink>
+          <NavLink href='/dashboard/congres' icon={<Star className="w-5 h-5" />}>
+            Congres
           </NavLink>
         </nav>
         <a

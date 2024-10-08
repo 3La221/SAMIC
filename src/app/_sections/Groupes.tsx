@@ -1,4 +1,3 @@
-"use client"
 import React from 'react'
 import SectionTitle from '../_components/sectionTitle'
 import { MdGroups } from "react-icons/md";
@@ -7,7 +6,6 @@ import { FaBug } from "react-icons/fa";
 import { TiZoom } from "react-icons/ti";
 import { FaBacterium } from "react-icons/fa";
 import { MdOutlineScience } from "react-icons/md";
-import { Appearing } from '../_components/appearing';
 
 const Groupes = () => {
 
@@ -39,7 +37,6 @@ const Groupes = () => {
   return (
     <div className='flex flex-col items-center gap-4'>
       <SectionTitle title="Groupes" icon={<MdGroups className='text-primary' />} />
-      <Appearing.FromBottom>
 
       <div className='grid  md:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center  gap-4  '>
             {
@@ -49,7 +46,6 @@ const Groupes = () => {
             }
 
       </div>
-      </Appearing.FromBottom>
 
       
     </div>

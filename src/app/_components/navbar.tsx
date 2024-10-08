@@ -30,15 +30,27 @@ const Socials = () => {
   )
 }
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
+interface Congres {
+  id: number;
+  title: string | null;  
+  url: string | null;    
+}
 
+interface NavbarProps {
+  initialCongres: Congres[];
+}
+
+const Navbar:React.FC<NavbarProps> = ({initialCongres}) => {
+  const [menuOpen, setMenuOpen] = useState(false)
+  console.log(initialCongres)
   const navBarItems = [
-    { label: 'Accueil', href: '/' },
-    { label: 'La SAMiC', href: '#SAMiC' },
-    { label: 'Calendrier', href: '#Calendrier' },
-    { label: 'Actualités', href: '#Actualités' },
-    { label: 'Groupes de travail', href: '#Groupes de travail' },
+    { label: 'Accueil', href: '#' },
+    { label: 'La SAMiC', href: '#samic' },
+    { label: 'Calendrier', href: '#calendrier' },
+    { label: 'Actualités', href: '#actualites' },
+    { label: 'Groupes de travail', href: '#groupes' },
+    { label: 'Contact', href: '#contact' },
+    
   ]
 
   const archiveItems = [
@@ -86,6 +98,23 @@ const Navbar = () => {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger className='text-secondary text-[14px] font-semibold uppercase p-2 m-1 
+            hover:text-primary transition-colors duration-300 ease-in-out leading-9 flex items-center justify-center gap-1'>
+            Congres <BiDownArrow className='inline-block ' />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {initialCongres.map((item, index) => (
+              <DropdownMenuItem key={index}>
+                <Link href={item.url || ""} className='w-full'>
+                  {item.title}
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
       </div>
 
       <div className='flex gap-2'>

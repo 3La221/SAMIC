@@ -11,14 +11,14 @@ interface ActualiteCardProps {
 
 const ActualiteCard = ({actualite}:ActualiteCardProps) => {
   return (
-      <div className="news-block-one w-[400px]">
+      <div className="news-block-one w-[400px]  ">
       <div className="inner-box">
           <div className="image-box">
               <figure className="image"><img src={`api/images/${actualite.img}`} alt=""/></figure>
               <div className="link-btn"><a href=""><i className="flaticon-zoom-in"></i></a></div>
           </div>
           <div className="lower-content">
-              <div className="category"><a href="blog-details.html">SAMiC</a></div>
+              <div className="category"><a href='/'>SAMiC</a></div>
               <ul className="post-info clearfix">
                   <li>11 August, 2022</li>
               </ul>

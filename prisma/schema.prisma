@@ -115,3 +115,9 @@ model Archive {
   type  String? 
 }
 
+
+model Congres {
+  id    Int    @id @default(autoincrement())
+  title String?
+  url   String? 
+}

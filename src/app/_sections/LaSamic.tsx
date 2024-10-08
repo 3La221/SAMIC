@@ -38,12 +38,7 @@ const LaSamic = ({ initialObjectifs, initialMissions , initalOrganisations }: La
     <div className='flex flex-col justify-center items-center gap-4 mt-8 mb-8'>
       <SectionTitle title={"La SAMiC"} icon={<LuDna className='text-primary rotate-90' />} />
 
-      <Appearing.FromBottom className='flex justify-center items-center'>
-        <p className='font-light text-center text-[14px] md:text-[20px] lg:text-[24px] text-secondary w-1/2'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quo debitis voluptas. Ratione porro quod sunt,
-          expedita ut voluptatum consequuntur enim, quia cupiditate optio, blanditiis repudiandae in numquam accusamus perferendis!
-        </p>
-      </Appearing.FromBottom>
+      
 
       {/* Objectifs Section */}
       <SubSectionTitle title={"Objectifs"} />
